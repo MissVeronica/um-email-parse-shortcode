@@ -9,5 +9,8 @@ UM email placeholders may be used in the shortcode content
 
 1. [um_show_content roles="um_role1,um_role2"] {display_name} [/um_show_content]
 
+## UM Reference
+https://docs.ultimatemember.com/article/226-restrict-content-on-a-page-post-to-specific-users-community-role
+
 ## Installation
 Download the zip file and install as a WP Plugin, activate the plugin.
