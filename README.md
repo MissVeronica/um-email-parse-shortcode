@@ -12,5 +12,8 @@ UM email placeholders may be used in the shortcode content
 ## UM Reference
 https://docs.ultimatemember.com/article/226-restrict-content-on-a-page-post-to-specific-users-community-role
 
+## Updates
+Version 1.0.1 Code improvement
+
 ## Installation
 Download the zip file and install as a WP Plugin, activate the plugin.
