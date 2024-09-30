@@ -2,15 +2,17 @@
 /**
  * Plugin Name:     Ultimate Member - Email Parse Shortcode
  * Description:     Extension to Ultimate Member for parsing the shortcode "um_show_content" in outgoing notification emails.
- * Version:         1.0.0
+ * Version:         1.0.1
  * Requires PHP:    7.4
  * Author:          Miss Veronica
  * License:         GPL v2 or later
  * License URI:     https://www.gnu.org/licenses/gpl-2.0.html
  * Author URI:      https://github.com/MissVeronica
+ * Plugin URI:      https://github.com/MissVeronica/um-email-parse-shortcode
+ * Update URI:      https://github.com/MissVeronica/um-email-parse-shortcode
  * Text Domain:     ultimate-member
  * Domain Path:     /languages
- * UM version:      2.8.4
+ * UM version:      2.8.7
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
@@ -32,7 +34,7 @@ class UM_Email_Parse_Shortcode {
         if ( UM()->options()->get( $slug . '_parse_shortcode' ) == 1 ) {
 
             $user = get_user_by( 'email', $this->email );
-            
+
             if ( ! empty( $user )) {
 
                 $save_userid = false;
@@ -47,7 +49,7 @@ class UM_Email_Parse_Shortcode {
                 $message = $this->parse_shortcode( $message );
 
                 if ( ! empty( $save_userid )) {
-                    um_fecth_user( $save_userid );
+                    um_fetch_user( $save_userid );
                 }
             }
         }
@@ -119,3 +121,4 @@ class UM_Email_Parse_Shortcode {
 }
 
 new UM_Email_Parse_Shortcode();
+
