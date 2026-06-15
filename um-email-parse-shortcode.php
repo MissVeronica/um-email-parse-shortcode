@@ -2,7 +2,7 @@
 /**
  * Plugin Name:     Ultimate Member - Email Parse Shortcode
  * Description:     Extension to Ultimate Member for parsing the shortcode "um_show_content" in outgoing notification emails.
- * Version:         1.0.1
+ * Version:         1.0.3
  * Requires PHP:    7.4
  * Author:          Miss Veronica
  * License:         GPL v2 or later
@@ -12,7 +12,7 @@
  * Update URI:      https://github.com/MissVeronica/um-email-parse-shortcode
  * Text Domain:     ultimate-member
  * Domain Path:     /languages
- * UM version:      2.8.7
+ * UM version:      2.12.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
@@ -31,7 +31,7 @@ class UM_Email_Parse_Shortcode {
 
     public function um_email_parse_shortcode( $message, $slug, $args ) {
 
-        if ( UM()->options()->get( $slug . '_parse_shortcode' ) == 1 ) {
+        if ( UM()->options()->get( $slug . '_parse_shortcode' ) == 1 && ! empty( $this->email )) {
 
             $user = get_user_by( 'email', $this->email );
 
@@ -42,7 +42,7 @@ class UM_Email_Parse_Shortcode {
                     $save_userid = um_user( 'ID' );
                     um_fetch_user( $user->ID );
                 }
-
+    
                 remove_shortcode( 'um_show_content', array( 'um\core\Shortcodes', 'um_shortcode_show_content_for_role' ) );
                 add_shortcode( 'um_show_content', array( $this, 'um_shortcode_show_content_for_role' ) );
 
@@ -108,11 +108,11 @@ class UM_Email_Parse_Shortcode {
     public function um_admin_settings_email_section_parse_shortcode( $section_fields, $email_key ) {
 
         $section_fields[] = array(
-                'id'            => $email_key . '_parse_shortcode',
-                'type'          => 'checkbox',
-                'label'         => __( 'Parse Shortcode - Enable parsing of shortcode "um_show_content"', 'ultimate-member' ),
-                'description'   => __( 'Click to enable parsing of the shortcode "um_show_content" in this template for outgoing emails', 'ultimate-member' ),
-                'conditional'   => array( $email_key . '_on', '=', 1 ),
+                'id'             => $email_key . '_parse_shortcode',
+                'type'           => 'checkbox',
+                'label'          => esc_html__( 'Parse Shortcode - Enable parsing of shortcode "um_show_content"', 'ultimate-member' ),
+                'checkbox_label' => __( 'Click to enable parsing of the shortcode "um_show_content" in this template for outgoing emails', 'ultimate-member' ),
+                'conditional'    => array( $email_key . '_on', '=', 1 ),
             );
 
         return $section_fields;
@@ -121,4 +121,5 @@ class UM_Email_Parse_Shortcode {
 }
 
 new UM_Email_Parse_Shortcode();
+
 
