@@ -16,4 +16,4 @@ https://docs.ultimatemember.com/article/226-restrict-content-on-a-page-post-to-s
 Version 1.0.3 Code improvement
 
 ## Installation
-Download the zip file and install as a WP Plugin, activate the plugin.
+Download the zip file (Green button) and install as a WP Plugin, activate the plugin.
